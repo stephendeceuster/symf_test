@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            {% for city in cities %}
+
+            <div class="col-sm-4">
+
+                <h3>{{ city.title }}</h3>
+                <p>{{ city.width}} x {{ city.height }} pixels</p>
+                <p>{{ city.description }}</p>
+
+                <!-- <img class="img-fluid" src="{{ city.image }}"> -->
+                <img class="img-fluid" src="{{ asset('images/' ~ city.image) }}">
+
+                <a href={{ path('city_detail', { id: city.id } ) }}>Meer info</a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
