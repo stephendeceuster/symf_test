@@ -34,7 +34,6 @@ class Land
 
     /**
      * @ORM\OneToMany(targetEntity=City::class, mappedBy="land")
-     * @Groups({"land:read", "land:write", "city:read", "city:write"})
      */
     private $cities;
 
