@@ -13,8 +13,9 @@
                 <p>{{ city.width}} x {{ city.height }} pixels</p>
                 <p>{{ city.description }}</p>
 
-                <!-- <img class="img-fluid" src="{{ city.image }}"> -->
-                <img class="img-fluid" src="{{ asset('images/' ~ city.image) }}">
+                {% if city.image > '' %}
+                    <img class="img-fluid" src="{{ asset( 'images/' ~ city.image ) }}">
+                {% endif %}
 
                 <a href={{ path('city_detail', { id: city.id } ) }}>Meer info</a>
 

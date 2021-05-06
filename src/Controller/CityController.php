@@ -51,7 +51,7 @@ class CityController extends AbstractController
 
             //find and set land
             $lan_id = $request->request->get("land");
-            if ( $lan_id > 0 )
+            if ( $lan_id >= 0 )
             {
                 $land =  $landRepository->find( $lan_id );
                 $city->setLand( $land );
@@ -62,7 +62,7 @@ class CityController extends AbstractController
         }
 
         //back to home
-        return $this->redirectToRoute( 'home');
+        return $this->redirectToRoute( 'home' );
     }
 
 }

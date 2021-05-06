@@ -1,8 +1,6 @@
 <?php
 namespace App\Service;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-
 class SelectBoxService
 {
     public function generate($element_name, $value, $objects, $required = false)
@@ -18,6 +16,8 @@ class SelectBoxService
             if ( $object->getId() === $value ) $selected = " selected ";
             else $selected = "";
 
+            //we veronderstellen hier dat $object
+            //de methoden getId() en getName() heeft
             $select .= "<option $selected value=" . $object->getId() . ">" . $object->getName() . "</option>";
         }
 
