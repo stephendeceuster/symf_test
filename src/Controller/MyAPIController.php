@@ -5,6 +5,8 @@ use App\Entity\City;
 use App\Entity\Land;
 use App\Repository\CityRepository;
 use App\Repository\LandRepository;
+use App\Service\PDOService;
+use App\Service\StringService;
 use Doctrine\ORM\EntityManagerInterface;
 use \Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,6 +91,41 @@ class MyAPIController extends AbstractController
         $response = [
             "string" => $somestring,
             "reversed" => strrev($somestring)
+        ];
+
+        return $this->json( $response, $status = 200, $headers = [], $context = [] );
+    }
+
+    //    /myapi/caps/stevenderyck
+    //    nieuwe service die de string omzet in hoofdletters
+    /**
+     * @Route("/myapi/caps/{somestring}", name="myapi_caps", methods={"GET"})
+     */
+    public function caps($somestring, StringService $stringService)
+    {
+        $response = [
+            "string" => $somestring,
+            "caps" => $stringService->caps($somestring)
+        ];
+
+        return $this->json( $response, $status = 200, $headers = [], $context = [] );
+    }
+
+    //  /myapi/checkdate/{datum}
+    /**
+     * @Route("/myapi/checkdate/{datum}", name="myapi_checkdate", methods={"GET"})
+     */
+    public function checkdate($datum, PDOService $PDOService)
+    {
+        $sql = "select * from afspraken where afs_datum='$datum'";
+        $data = $PDOService->GetData($sql);
+
+        if ( $data ) $antwoord = "not free";
+        else $antwoord = "free";
+
+        $response = [
+            "datum" => $datum,
+            "check" => $antwoord
         ];
 
         return $this->json( $response, $status = 200, $headers = [], $context = [] );
