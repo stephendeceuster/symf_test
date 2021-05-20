@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home", methods={"GET"})
+     * @Route("/home", name="home", methods={"GET"})
      */
     public function homepage(CityRepository $cityRepository)
     {
