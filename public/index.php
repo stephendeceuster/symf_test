@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Credentials: true');
 
 use App\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
